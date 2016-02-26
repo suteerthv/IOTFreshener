@@ -6,20 +6,18 @@ class MyHandler(BaseHTTPRequestHandler):
 		qs={}
 		path = self.path
 		if '?' in path:
-			#path, tmp =
-			print path.split('?')
-	#		print tmp
-#			qs = urlparse.parse_qs(tmp)
-		print path,qs
-#		time = (qs['ntimes'][0:0])
-#		device = (qs['device'][0:0])
-	#	processGet(time,device)		
+			path, tmp = path.split('?')
+			qs = urlparse.parse_qs(tmp)
+		param = qs['params'][0].split(',')
+		time   = int(param[0])
+		device = int(param[1])
+		self.processGet(time,device)		
 		print qs
 	
 		print "End of parsing get"
-	def processGet(t,d):
-		print "time:"%t
-		print "device"%d
+	def processGet(self,t,d):
+		print "time: %d"%t
+		print "device: %d"%d
 				
 		
 	
