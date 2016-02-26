@@ -1,0 +1,8 @@
+The serves has a simple GET rest API
+
+Variables:
+
+ntimes	-> The number of times a device should spray
+device	->The device ID that is given.
+
+<--URL-->?params="<ntimes>,<device>"
