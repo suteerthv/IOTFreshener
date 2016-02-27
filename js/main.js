@@ -45,6 +45,7 @@ function freshener1Submit() {
 
         console.log(device, frequency);
         var url = "http://192.168.0.104:8181/?params=" + frequency + "," + device;
+        console.log(url);
         $.get(url, function (data) {
             console.log(data);
         });
@@ -60,6 +61,7 @@ function freshener2Submit() {
     if (onOff && frequency != Infinity) {
         console.log(device, frequency);
         var url = "http://192.168.0.104:8181/?params=" + frequency + "," + device;
+        console.log(url);
         $.get(url, function (data) {
             console.log(data);
         });
