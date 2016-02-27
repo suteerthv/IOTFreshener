@@ -9,10 +9,11 @@ body{
     font-weight:100 !important;  
 }
 
-a{
+.github{
     color: #26A69A !important;
 }
-a:hover{
+
+.github:hover{
     color: #2CC7B8 !important;
 }   
 

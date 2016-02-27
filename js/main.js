@@ -19,10 +19,10 @@ $(document).ready(function () {
             });
         } else {
             $(".card").fadeIn();
-            $.get("http://192.168.0.104:8181/?params=3,0", function (data) { //Device 0 turns on, 3 times an hour.
+            $.get("http://192.168.0.104:8181/?params=20,0", function (data) { //Device 0 turns on, 3 times an hour. (every 20mins)
                 console.log(data);
             });
-            $.get("http://192.168.0.104:8181/?params=3,1", function (data) { //Device 1 turns on, 3 times an hour.
+            $.get("http://192.168.0.104:8181/?params=20,1", function (data) { //Device 1 turns on, 3 times an hour.
                 console.log(data);
             });
         }
@@ -39,9 +39,9 @@ function freshener1Submit() {
     var onOff = $('#onOff1').prop('checked');
     var frequency = 0;
     var device = 1;
-
-    frequency = $('#f1DDValues').val();
-    if (onOff && frequency != null) {
+    
+    if (onOff && frequency != 0) {
+        frequency = 60/($('#f1DDValues').val());
         console.log(device, frequency);
         var url = "http://192.168.0.104:8181/?params=" + frequency + "," + device;
         $.get(url, function (data) {
@@ -55,8 +55,8 @@ function freshener2Submit() {
     var frequency = 0;
     var device = 2;
 
-    frequency = $('#f2DDValues').val();
-    if (onOff && frequency != null) {
+    if (onOff && frequency != 0) {
+        frequency = 60/($('#f2DDValues').val());
         console.log(device, frequency);
         var url = "http://192.168.0.104:8181/?params=" + frequency + "," + device;
         $.get(url, function (data) {
