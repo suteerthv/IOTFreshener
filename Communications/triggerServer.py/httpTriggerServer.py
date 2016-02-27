@@ -7,11 +7,12 @@ import json
 
 
 HOST='0.0.0.0'
-PORT=8080
-#(deviceID,)
+PORT=8181
+#(id,deviceID,freq)
+DEVICES=[('51ff6f065082554910260887',0)]
 URL="https://api.particle.io/v1/devices/{!s}/led/"
-DEVICES = ['51ff6f065082554910260887']
-ACCESS_TOKEN="2228662ce1e5a04e7fb21f9b81aa3bc390b72506"
+FREQ = 1
+ACCESS_TOKEN=0
 
 
 class MyHandler(BaseHTTPRequestHandler):
@@ -41,11 +42,14 @@ class MyHandler(BaseHTTPRequestHandler):
 		print "time: %s"%t
 		print "device: %d"%d
 		data = urllib.urlencode({
-			'access_token' : ACCESS_TOKEN,
-			'command':t
+				'access_token' : DEVICES[d][w],
+			'command':DEVICES[d][1]
 			}
 			);	
-		content =urllib.urlopen(url=(URL.format(DEVICES[d])),data=data).read()
+		try:
+			content =urllib.urlopen(url=(URL.format(DEVICES[d])),data=data).read()
+		except IndexValue:
+			content = "{'id':-1}"	
 		return content
 					
 	
