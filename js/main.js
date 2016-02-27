@@ -39,9 +39,10 @@ function freshener1Submit() {
     var onOff = $('#onOff1').prop('checked');
     var frequency = 0;
     var device = 1;
-    
-    if (onOff && frequency != 0) {
-        frequency = 60/($('#f1DDValues').val());
+
+    frequency = 60 / ($('#f1DDValues').val());
+    if (onOff && frequency != Infinity) {
+
         console.log(device, frequency);
         var url = "http://192.168.0.104:8181/?params=" + frequency + "," + device;
         $.get(url, function (data) {
@@ -55,8 +56,8 @@ function freshener2Submit() {
     var frequency = 0;
     var device = 2;
 
-    if (onOff && frequency != 0) {
-        frequency = 60/($('#f2DDValues').val());
+    frequency = 60 / ($('#f2DDValues').val());
+    if (onOff && frequency != Infinity) {
         console.log(device, frequency);
         var url = "http://192.168.0.104:8181/?params=" + frequency + "," + device;
         $.get(url, function (data) {
