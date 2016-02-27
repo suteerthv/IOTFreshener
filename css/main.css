@@ -9,6 +9,13 @@ body{
     font-weight:100 !important;  
 }
 
+a{
+    color: #26A69A !important;
+}
+a:hover{
+    color: #2CC7B8 !important;
+}   
+
 .thin{
     font-weight:100 !important;   
 }
