@@ -11,18 +11,18 @@ $(document).ready(function () {
 
         if (x == false) {
             $(".card").fadeOut();
-            $.get("http://192.168.0.104:8181/?params=4,0", function (data) { //Device 0 turns off, 0 times an hour.
+            $.get("http://192.168.0.104:8181/?params=0,0", function (data) { //Device 0 turns off, 0 times an hour.
                 console.log(data);
             });
-            $.get("http://192.168.0.104:8181/?params=1,1", function (data) { //Device 1 turns off, 0 times an hour.
+            $.get("http://192.168.0.104:8181/?params=0,1", function (data) { //Device 1 turns off, 0 times an hour.
                 console.log(data);
             });
         } else {
             $(".card").fadeIn();
-            $.get("http://192.168.0.104:8181/?params=4,0", function (data) { //Device 0 turns on, 4 times an hour.
+            $.get("http://192.168.0.104:8181/?params=3,0", function (data) { //Device 0 turns on, 3 times an hour.
                 console.log(data);
             });
-            $.get("http://192.168.0.104:8181/?params=4,1", function (data) { //Device 1 turns on, 4 times an hour.
+            $.get("http://192.168.0.104:8181/?params=3,1", function (data) { //Device 1 turns on, 3 times an hour.
                 console.log(data);
             });
         }
