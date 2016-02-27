@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100);
+<!--"White": #E3F2FD-->
+<!--Green: #00E676-->
+<!--Dash Black: #263238-->
+<!--Material Teal: #26A69A -->
+body{
+    background-color:#E3F2FD;
+    font-family: 'Roboto', sans-serif;
+    font-weight:100 !important;  
+}
+
+.thin{
+    font-weight:100 !important;   
+}
+
+.jumbotron{
+    color:#E3F2FD;
+    background-color:#263238;
+}
+
+.underline{
+    text-decoration:underline;   
+}
+
+.title{
+    font-size:75;
+    font-weight:100;   
+}
+.medium {
+    width: 300px;
+    height: 300px !important;
+}
+
+.tealText{
+    color:#26A69A;
+}
+
+.submitBtn{
+    color:white;
+    background-color:#26A69A;
+}
+
+.submitBtn:hover{
+    color:#26A69A !important;
+    background-color:white !important;
+    border-color:#26A69A;
+    border-style: solid;
+    border-width: 1px;
+}
+
+select{
+    visibility:visible;
+    display:inline !important;
+}
