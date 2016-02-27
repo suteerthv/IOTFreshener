@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Keep it fresh boys</title>
+    <script src="js/jquery-2.1.1.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script>
+        $('#f2DD').dropdown({
+            inDuration: 100,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        });
+        $('#f1DD').dropdown({
+            inDuration: 100,
+            outDuration: 225,
+            constrain_width: false, // Does not change width of dropdown to that of the activator
+            hover: true, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: false, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+        });
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="title"> Keep Fresh </h1>
+            <p class="thin">A project by <a class="github" href="https://github.com/suteerth1">Suteerth Vishnu</a>, <a class="github"  href="www.github.com/vwsong">Vincent Song</a>, and <a class="github" href="https://github.com/andrewjaska">Michael Anderjaska.</a></p>
+        </div>
+
+    </div>
+    <br/>
+    <div class="container">
+        <div class="switch">
+            <label>
+                Toggle All Fresheners
+                <input id="onOff" type="checkbox" checked>
+                <span class="lever"></span>
+            </label>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card medium">
+                    <div class="card-image waves-effect waves-block waves-light">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Freshener 1<i class="tealText material-icons right">Edit</i></span>
+                        <hr/>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Settings<i class="tealText material-icons right">close</i></span>
+                        <hr/>
+                        <div class="switch">
+                            <label>
+                                Off
+                                <input id="onOff1" type="checkbox" checked>
+                                <span class="lever"></span> On
+                            </label>
+                        </div>
+                        <br/>
+                        <select id='f1DDValues'>
+                            <option value="0" disabled selected><a href="#!">Frequency (per hour)</a>
+                            </option>
+                            <option value="3"><a href="#!">3</a>
+                            </option>
+                            <option value="6"><a href="#!">6</a>
+                            </option>
+                            <option value="12"><a href="#!">12</a>
+                            </option>
+                        </select>
+                        <br/>
+                        <br/>
+                        <a id="submit1" onClick="freshener1Submit()" class="submitBtn waves-effect waves-light btn">Apply</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+                <div class="card medium">
+                    <div class="card-image waves-effect waves-block waves-light">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Freshener 2<i class="tealText material-icons right">Edit</i></span>
+                        <hr/>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Settings<i class="tealText material-icons right">close</i></span>
+                        <hr/>
+                        <div class="switch">
+                            <label>
+                                Off
+                                <input id="onOff2" type="checkbox" checked>
+                                <span class="lever"></span> On
+                            </label>
+                        </div>
+                        <br/>
+                        <select id='f2DDValues'>
+                            <option value="0" disabled selected><a href="#!">Frequency (per hour)</a>
+                            </option>
+                            <option value="3"><a href="#!">3</a>
+                            </option>
+                            <option value="6"><a href="#!">6</a>
+                            </option>
+                            <option value="12"><a href="#!">12</a>
+                            </option>
+                        </select>
+                        <br/>
+                        <br/>
+                        <a id="submit2" onClick="freshener2Submit()" class="submitBtn waves-effect waves-light btn">Apply</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
