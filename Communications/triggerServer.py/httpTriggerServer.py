@@ -1,5 +1,12 @@
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import urlparse
+import urllib
+import urllib2
+from urllib2 import urlopen, HTTPError
+
+URL="https://api.particle.io/v1/devices/51ff6f065082554910260887/led/"
+ACCESS_TOKEN="2228662ce1e5a04e7fb21f9b81aa3bc390b72506"
+COMMAND = "command=on"
 class MyHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
 		print("Just received a GET request")
@@ -18,8 +25,14 @@ class MyHandler(BaseHTTPRequestHandler):
 	def processGet(self,t,d):
 		print "time: %d"%t
 		print "device: %d"%d
-				
-		
+		data = urllib.urlencode({
+			'access_token' : ACCESS_TOKEN,
+			'command':'on'
+			}
+			);	
+		content =urllib.urlopen(url=URL,data=data).read()
+		print content
+					
 	
 	def log_request(self, code=None, size=None):
 		print('Req')
