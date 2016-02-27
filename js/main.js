@@ -4,17 +4,18 @@
 $(document).ready(function () {
     var x = $('#onOff').prop('checked')
     var jsonString;
-    $.get("http://192.168.0.102:8181/?params=-1,0", function (data) { //Device 0 turns off, 0 times an hour.
-        jsonString = data;
-        console.log(jsonString);
-    });
-
-    setTimeout(function () {
-        var freshener1 = jsonString[0];
-        var freshener2 = jsonString[1];
+    var freshener1;
+    var freshener2;
+    /*$.get("http://192.168.0.102:8181/?params=-1,0", function (data) { //Device 0 turns off, 0 times an hour.
+        console.log(data);
+        freshener1 = data[0];
+        freshener2 = data[1];
         console.log(freshener1, freshener2);
-
-    }, 1000);
+        alert("load was performed");
+    });
+    setTimeout(function () {
+        console.log(freshener1, freshener2);
+    }, 2000);*/
     hide();
 });
 
@@ -26,7 +27,9 @@ function hide(f1, f2) {
     $("#onOff").change(function () { //When the switch is activated
         var x = $('#onOff').prop('checked')
         if (x == false) {
-            $(".empty").animate({ opacity: 1 })
+            $(".empty").animate({
+                opacity: 1
+            })
             $(".empty").fadeIn();
             $(".card").fadeOut();
             $.get("http://192.168.0.102:8181/?params=0,0", function (data) { //Device 0 turns off, 0 times an hour.
@@ -35,9 +38,11 @@ function hide(f1, f2) {
             $.get("http://192.168.0.102:8181/?params=0,1", function (data) { //Device 1 turns off, 0 times an hour.
                 console.log(data);
             });
-            
+
         } else {
-            $(".empty").animate({ opacity: 0 })
+            $(".empty").animate({
+                opacity: 0
+            })
             $(".card").fadeIn();
             $.get("http://192.168.0.102:8181/?params=20,0", function (data) { //Device 0 turns on, 3 times an hour. (every 20mins)
                 console.log(data);
@@ -45,7 +50,7 @@ function hide(f1, f2) {
             $.get("http://192.168.0.102:8181/?params=20,1", function (data) { //Device 1 turns on, 3 times an hour.
                 console.log(data);
             });
-            
+
         }
 
     });
@@ -67,14 +72,14 @@ function freshener1Submit() {
         device = 0;
         var url = "http://192.168.0.102:8181/?params=" + frequency + "," + device;
         console.log(url);
+        $("#freq1").text(frequency);
+        $("#status1").text("Off");
         $.get(url, function (data) {
             console.log(data);
         });
     }
-    if (onOff1 && frequency != Infinity) {
-
+    if (onOff && frequency != Infinity) {
         console.log(device, frequency);
-
         var url = "http://192.168.0.102:8181/?params=" + frequency + "," + device;
         $("#freq1").text(frequency);
         $("#status1").text("On");
@@ -97,6 +102,8 @@ function freshener2Submit() {
         device = 1;
         var url = "http://192.168.0.102:8181/?params=" + frequency + "," + device;
         console.log(url);
+        $("#freq2").text(frequency);
+        $("#status2").text("Off");
         $.get(url, function (data) {
             console.log(data);
         });
