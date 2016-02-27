@@ -41,14 +41,16 @@ class MyHandler(BaseHTTPRequestHandler):
 	def processGet(self,t,d):
 		print "time: %s"%t
 		print "device: %d"%d
-		data = urllib.urlencode({
-				'access_token' : DEVICES[d][w],
-			'command':DEVICES[d][1]
-			}
-			);	
+		data={
+			'access_token' : DEVICES[d][ACCESS_TOKEN],
+			'command':DEVICES[d][FREQ]
+		}
+
+		print data	
+		data = urllib.urlencode(data);
 		try:
 			content =urllib.urlopen(url=(URL.format(DEVICES[d])),data=data).read()
-		except IndexValue:
+		except :
 			content = "{'id':-1}"	
 		return content
 					
