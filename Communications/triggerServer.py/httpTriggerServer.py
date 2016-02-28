@@ -9,10 +9,11 @@ import json
 HOST='0.0.0.0'
 PORT=8181
 #(id,deviceID,freq)
-DEVICES=[('51ff6f065082554910260887',0)]
+DEVICES=[['51ff6f065082554910260887','2228662ce1e5a04e7fb21f9b81aa3bc390b72506',0],['123123123','123123123',0]]
 URL="https://api.particle.io/v1/devices/{!s}/led/"
-FREQ = 1
-ACCESS_TOKEN=0
+DEVID=0
+FREQ = 2
+ACCESS_TOKEN=1
 
 
 class MyHandler(BaseHTTPRequestHandler):
@@ -30,29 +31,42 @@ class MyHandler(BaseHTTPRequestHandler):
 		print con
 		self.send_response(200)
 		
-		self.send_header("Content-type", "text/html")
+		self.send_header("Content-type", "application/json")
 		self.end_headers()
-		self.wfile.write("<html><head><title>Title goes here.</title></head>")
-		self.wfile.write("<body><p>%s</p>"%con)
-		self.wfile.write("</body></html>")
+		self.wfile.write(con)
 		print qs
 		print "End of parsing get"
 
 	def processGet(self,t,d):
 		print "time: %s"%t
 		print "device: %d"%d
+				
 		data={
 			'access_token' : DEVICES[d][ACCESS_TOKEN],
 			'command':DEVICES[d][FREQ]
 		}
 
+		if(int(t) < 0):
+			lel=[]
+			for i in DEVICES:
+				lel.append(i[FREQ])
+				print lel
+			print "cool stroy bob."
+			return lel
+		DEVICES[d][FREQ]=t
 		print data	
 		data = urllib.urlencode(data);
-		try:
-			content =urllib.urlopen(url=(URL.format(DEVICES[d])),data=data).read()
-		except :
+		content={}
+	
+		try:	
+			content =urllib.urlopen(url=(URL.format(DEVICES[d][DEVID])),data=data).read()
+			print content
+		except IOError:
 			content = "{'id':-1}"	
+			print ("shit happened")
+		
 		return content
+		#return content
 					
 	
 	def log_request(self, code=None, size=None):
