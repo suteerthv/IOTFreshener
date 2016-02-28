@@ -1,80 +1,58 @@
-// This #include statement was automatically added by the Particle IDE.
 #include "elapsedMillis/elapsedMillis.h"
 
-// This #include statement was automatically added by the Particle IDE.
-#include "TimeAlarms/TimeAlarms.h"
+/*The air freshener has a 15 second minimum
+The on cycle is 15 seconds, meaning that you have to turn it on 15 //seconds prior to when you expect it to.
+*/ 
 
-Servo servo;
+bool canRun = true;
 
-int servoPin = D0;
-int relayPin = D2;
-int ledPin1 = D7;
-bool canRun = false;
-#define minToMilli 60000;
-
+int secToMilli = 1000;
 
 elapsedMillis timer0;
 
-unsigned long sprayInterval = 10 * minToMilli; //default 10 minutes
+unsigned long sprayInterval = 0; //default at 0. Change over web app
 
 
 void setup() {
     
-    servo.attach(servoPin);
-    
     pinMode(ledPin1, OUTPUT);
-    pinMode(relayPin, OUTPUT);
+    pinMode(D5, OUTPUT);
     
-    Particle.function("led", runLED);
+    Particle.function("led", runSys);
     
     timer0 = 0;
-
+    
 }
 
 void loop() {
     
-    if (timer0 > sprayInterval) {
-        timer0 -= sprayInterval; //reset the timer
-    
     if(canRun){
-        runLEDLight();
     
+        if (timer0 > (sprayInterval - 15000)) { //time to turn on the sprayer
+          
+           digitalWrite(D5, HIGH);
+           
+           if(timer0 > (sprayInterval + 2000)) { //It has sprayed by this point, we wil turn it off. Added a bit just in case
+              digitalWrite(D5, LOW);
+              timer0 = 0; //timer is reset
+              
+           }
+           
         }
+      
     }
-}
-
-void runAirFreshener() {
-   
-    digitalWrite(relayPin, HIGH);
-    
-    servo.write(0);
-    
-    delay(1000);
-    
-    servo.write(180);
-    
-    delay(1000);
-    
-    digitalWrite(relayPin, LOW);
-
-
-}
-
-
-void runLEDLight() {
-    
-    digitalWrite(ledPin1, HIGH);
-    
-    delay(2000);
-    
-    digitalWrite(ledPin1, LOW);
-    
     
 }
 
-int runLED(String command) {
+
+
+int runSys(String command) {
     
-    //commands come as minutes
+    //commands come as 0,1,3, or 6
+    digitalWrite(D2, HIGH);
+    delay(50);
+    digitalWrite(D2, LOW);
+    
     
     if(command == "0"){
     
@@ -83,14 +61,40 @@ int runLED(String command) {
         return 0;
     }
     
-    if(command != "0"){
+    if(command == "3"){
         
         canRun = true;
     
-        sprayInterval = command.toInt() * minToMilli;
+        sprayInterval =  20 * secToMilli;
+        
+        timer0 = 0;
+   
+    
+        return command.toInt();
+    }
+    
+     if(command == "6"){
+        
+        canRun = true;
+    
+        sprayInterval = 40 * secToMilli;
+        //40 sec interval
     
         timer0 = 0;
+   
     
+        return command.toInt();
+    }
+    
+     if(command == "9"){
+        
+        canRun = true;
+    
+        sprayInterval = 60 * secToMilli;
+        //60sec interval
+    
+        timer0 = 0;
+   
         return command.toInt();
     }
     
