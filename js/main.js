@@ -77,6 +77,7 @@ function freshener1Submit() {
         $.get(url, function (data) {
             console.log(data);
         });
+
     }
     if (onOff && frequency != Infinity) {
         console.log(device, frequency);
@@ -84,7 +85,7 @@ function freshener1Submit() {
         $("#freq1").text(frequency);
         $("#status1").text("On");
         console.log(url);
-
+        Materialize.toast('Freshener turned on, spraying every ' + frequency + ' seconds!', 4000);
         $.get(url, function (data) {
             console.log(data);
         });
@@ -95,7 +96,7 @@ function freshener2Submit() {
     var onOff = $('#onOff2').prop('checked');
     var frequency = 0;
     var device = 1;
-
+    Materialize.toast('Freshener not connected.', 4000);
     frequency = 60 / ($('#f2DDValues').val());
     if (onOff == false) {
         frequency = 0;
