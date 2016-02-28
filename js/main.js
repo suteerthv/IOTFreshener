@@ -44,10 +44,10 @@ function hide(f1, f2) {
                 opacity: 0
             })
             $(".card").fadeIn();
-            $.get("http://192.168.0.102:8181/?params=20,0", function (data) { //Device 0 turns on, 3 times an hour. (every 20mins)
+            $.get("http://192.168.0.102:8181/?params=3,0", function (data) { //Device 0 turns on, 3 times an hour. (every 20mins)
                 console.log(data);
             });
-            $.get("http://192.168.0.102:8181/?params=20,1", function (data) { //Device 1 turns on, 3 times an hour.
+            $.get("http://192.168.0.102:8181/?params=3,1", function (data) { //Device 1 turns on, 3 times an hour.
                 console.log(data);
             });
 
@@ -66,7 +66,7 @@ function freshener1Submit() {
     var frequency = 0;
     var device = 0;
 
-    frequency = 60 / ($('#f1DDValues').val());
+    frequency = $('#f1DDValues').val();
     if (onOff == false) {
         frequency = 0;
         device = 0;
@@ -77,7 +77,6 @@ function freshener1Submit() {
         $.get(url, function (data) {
             console.log(data);
         });
-
     }
     if (onOff && frequency != Infinity) {
         console.log(device, frequency);
@@ -85,7 +84,7 @@ function freshener1Submit() {
         $("#freq1").text(frequency);
         $("#status1").text("On");
         console.log(url);
-        Materialize.toast('Freshener turned on, spraying every ' + frequency + ' seconds!', 4000);
+        Materialize.toast('Freshener turned on, spraying ' + frequency + ' times an hour!', 4000);
         $.get(url, function (data) {
             console.log(data);
         });
@@ -97,7 +96,7 @@ function freshener2Submit() {
     var frequency = 0;
     var device = 1;
     Materialize.toast('Freshener not connected.', 4000);
-    frequency = 60 / ($('#f2DDValues').val());
+    /*frequency = $('#f2DDValues').val();
     if (onOff == false) {
         frequency = 0;
         device = 1;
@@ -118,9 +117,7 @@ function freshener2Submit() {
         $.get(url, function (data) {
             console.log(data);
         });
-    }
-
-
+    }*/
 }
 
 function send() {
