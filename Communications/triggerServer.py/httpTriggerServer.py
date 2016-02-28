@@ -55,10 +55,13 @@ class MyHandler(BaseHTTPRequestHandler):
 			return lel
 		DEVICES[d][FREQ]=t
 		print data	
-		data = urllib.urlencode(data);
 		content={}
 	
 		try:	
+			data={
+			'access_token' : DEVICES[d][ACCESS_TOKEN],
+			'command':DEVICES[d][FREQ]}
+			data = urllib.urlencode(data);
 			content =urllib.urlopen(url=(URL.format(DEVICES[d][DEVID])),data=data).read()
 			print content
 		except IOError:
